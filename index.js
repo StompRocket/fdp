@@ -5,8 +5,10 @@ var figlet      = require('figlet')
 var inquirer    = require('inquirer')
 var Preferences = require('preferences')
 var Spinner     = CLI.Spinner
+var exec        = require('child_process').exec;
 var fs          = require('fs')
 
+var callback
 clear()
 console.log(
   chalk.yellow(
@@ -14,7 +16,22 @@ console.log(
     "Fairly Decent Privacy"
   )
 )
-
-function setupEncryption() {
-
+function fdpSetup(callback) {
+  var questions = [
+    {
+      name: "newKeys",
+      type: "input",
+      message: "Would you like to create a new set of encryption keys? y/n",
+      validate: function( value ){
+        if (value === "y" || value === "n") {
+          return true
+        }
+      }
+    }
+  ]
+  inquirer.prompt(questions).then(callback)
 }
+
+fdpSetup(function() {
+  console.log(arguments)
+})
