@@ -5,8 +5,9 @@ var figlet      = require('figlet')
 var inquirer    = require('inquirer')
 var Preferences = require('preferences')
 var Spinner     = CLI.Spinner
-var exec        = require('child_process').exec;
+var exec        = require('child_process').exec
 var fs          = require('fs')
+var keypair     = require('keypair')
 
 var callback
 clear()
@@ -33,5 +34,5 @@ function fdpSetup(callback) {
 }
 
 fdpSetup(function() {
-  console.log(arguments)
+  console.log(JSON.stringify(arguments))
 })
